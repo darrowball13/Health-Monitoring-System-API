@@ -1,0 +1,3 @@
+def deviceType():
+
+    return
