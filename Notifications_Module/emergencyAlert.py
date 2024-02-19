@@ -1,0 +1,4 @@
+
+def criticalConditionAlert():
+
+    return
