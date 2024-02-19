@@ -6,3 +6,7 @@ def basicAlertToPatient():
 def basicAlertToMedical():
 
     return
+
+def appointmentReminder():
+
+    return
