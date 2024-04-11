@@ -1,4 +1,4 @@
-import DarrowHealthApp as da
+import inputValidation as iv
 
 # Stores the available sign in option numbers. Must be updated if any options are added/removed
 sign_In_Options = [1,2,3]
@@ -13,7 +13,7 @@ def signIn():
 
     while True:
         command = input("Enter a Command Based on the Numbers above: ")
-        san_command = da.sanitizeOptions(command)
+        san_command = iv.sanitizeOptions(command)
         if san_command == "Invalid":
             continue
         elif san_command not in sign_In_Options:

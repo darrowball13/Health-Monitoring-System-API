@@ -1,4 +1,3 @@
-import re
 import signInMenu as sim
 import registrationForm as reg
 import mainMenuPatient as mmp
@@ -6,21 +5,21 @@ import Authentication_Authorization_Module as auth
 
 # Sanitizes text inputs so that improper commands cannot be entered for future table queries
 # Only allows users to give non-special character inputs
-def sanitizeText(text):
-    if not re.match("^[a-zA-Z0-9]*$", text):
-        print("Enter valid text")
-        return "Invalid"
-    else:
-        return text
+# def sanitizeText(text):
+#     if not re.match("^[a-zA-Z0-9]*$", text):
+#         print("Enter valid text")
+#         return "Invalid"
+#     else:
+#         return text
 
-# Sanitizes option menu inputs so that only numerical options be given
-# Only allows users to enter values between 0-9
-def sanitizeOptions(num):
-    if not re.match("^[0-9]*$", num):
-        print("Enter a Number")
-        return "Invalid"
-    else:
-        return int(num)
+# # Sanitizes option menu inputs so that only numerical options be given
+# # Only allows users to enter values between 0-9
+# def sanitizeOptions(num):
+#     if not re.match("^[0-9]*$", num):
+#         print("Enter a Number")
+#         return "Invalid"
+#     else:
+#         return int(num)
 
 def main():
 

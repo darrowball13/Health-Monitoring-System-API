@@ -1,4 +1,4 @@
-import DarrowHealthApp as da
+import inputValidation as iv
 
 # Stores the available patient menu option numbers. Must be updated if any options are added/removed
 patient_Options = [1,2,3,4]
@@ -14,7 +14,7 @@ def mainMenuPatient():
 
     while True:
         command = input("Enter a Command Based on the Numbers above: ")
-        san_command = da.sanitizeOptions(command)
+        san_command = iv.sanitizeOptions(command)
         if san_command == "Invalid":
             continue
         elif san_command not in patient_Options:
