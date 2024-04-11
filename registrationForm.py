@@ -1,5 +1,4 @@
 import inputValidation as iv
-import re
 
 # Stores the available role option numbers. Must be updated if any roles are added/removed
 Roles = [1,2,3,4]

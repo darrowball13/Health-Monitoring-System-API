@@ -1,4 +1,5 @@
 import re
+import pytest
 
 # Sanitizes text inputs so that improper commands cannot be entered for future table queries
 # Only allows users to give non-special character inputs
@@ -46,3 +47,6 @@ def sanitizeEmail(email):
         return "Invalid"
     else:
         return email
+    
+def randomTest():
+    assert sanitizeEmail("fakeemail.com") == "Invalid"
