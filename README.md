@@ -11,4 +11,7 @@ The file "DarrowHealthApp.py" is the file that starts the app. Therefore, to beg
 > python DarrowHealthApp.py
 
 This opens the main application, which prompts the user for the following:
-![image](https://github.com/darrowball13/Health-Monitoring-System-API/assets/113733798/66f4ff6c-29e8-4fd3-9939-91b5ff5321db)
+<p align="center">
+  ![image](https://github.com/darrowball13/Health-Monitoring-System-API/assets/113733798/66f4ff6c-29e8-4fd3-9939-91b5ff5321db)
+</p>
+
