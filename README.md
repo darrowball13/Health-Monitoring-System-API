@@ -1,5 +1,14 @@
 # Health-Monitoring-System-API
 
-A repository handling APIs associated with aspects of a health monitoring system. Each of the folders contains the APIs associated with that particular module.
+This repository holds the code for a simple healthcare app developed for the course EC530 Software Engineering Foundations. It is a Python-based application, and therefore requieres the user to have Python installed (version 3.9 or later).
 
-The files beginning with "Health_Monitering_System_" in the main directory contain the database schema that will be associated with the project: one containing the diagram representing the connections, while the other represent the SQL code that was used to implement the database tables.
+**Note: The structure of the repository is currently undergoing some adjustments, as there are adjustments needed to the files needed/folders.**
+
+## Usage
+
+The file "DarrowHealthApp.py" is the file that starts the app. Therefore, to begin usage, the following command must be run in a terminal:
+
+> python DarrowHealthApp.py
+
+This opens the main application, which prompts the user for the following:
+![image](https://github.com/darrowball13/Health-Monitoring-System-API/assets/113733798/66f4ff6c-29e8-4fd3-9939-91b5ff5321db)
