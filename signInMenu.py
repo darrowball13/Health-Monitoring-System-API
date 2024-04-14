@@ -6,11 +6,12 @@ sign_In_Options = [1,2,3]
 # Brings up the sign in menu for the user, and returns the command the user gave (after input sanitation)
 def signIn():
 
-    print("Commands: \n")
+    print("*********** Main Menu *********** \n")
     print("[1]: Log In")
     print("[2]: Register")
     print("[3]: Exit \n")
-
+    print("********************************* \n")
+ 
     while True:
         command = input("Enter a Command Based on the Numbers above: ")
         san_command = iv.sanitizeOptions(command)
