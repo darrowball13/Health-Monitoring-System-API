@@ -1,4 +1,4 @@
-import inputValidation as iv
+import Authentication_Authorization_Module.inputValidation as iv
 
 # Stores the available patient menu option numbers. Must be updated if any options are added/removed
 patient_Options = [1,2,3,4]

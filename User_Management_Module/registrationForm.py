@@ -1,4 +1,5 @@
-import inputValidation as iv
+import Authentication_Authorization_Module.checkCredentials as check
+import Authentication_Authorization_Module.inputValidation as iv
 
 # Stores the available role option numbers. Must be updated if any roles are added/removed
 Roles = [1,2,3,4]
@@ -46,6 +47,9 @@ def register():
         if username == "Invalid":
             print("Enter a valid username")
             continue
+        elif check.checkUsernameExists(username):
+            print("Username exists. Select a different one.")
+            continue
         else: 
             break
     
@@ -54,7 +58,7 @@ def register():
         password = input("Password: ")
         password = iv.sanitizeText(password)
         if password == "Invalid":
-            print("Enter a valid username")
+            print("Enter a valid password")
             continue
         else: 
             break
@@ -65,6 +69,9 @@ def register():
         email = iv.sanitizeEmail(email)
         if email == "Invalid":
             print("Enter a valid email")
+            continue
+        elif check.checkEmailExists(email):
+            print("Username exists. Select a different one.")
             continue
         else: 
             break

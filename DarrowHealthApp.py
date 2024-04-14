@@ -1,7 +1,7 @@
 import signInMenu as sim
-import registrationForm as reg
-import mainMenuPatient as mmp
-import Authentication_Authorization_Module as auth
+import User_Management_Module.registrationForm as reg
+import User_Management_Module.mainMenuPatient as mmp
+import Authentication_Authorization_Module.logInForm as li
 from requests import post, get, delete
 import sqlite3
 import os
@@ -29,13 +29,13 @@ def main():
             case 1:
                 print("Log In Accessed")
 
-                # Put Log In Authentication Here
-                # if authorized: 
-                print("Welcome [Name]!")
-                mmp.mainMenuPatient()
-                # else
-                # print("Invalid Log In Credentials. Try Again")
-                continue 
+                logInCheck, user = li.login()
+                if logInCheck:
+                    print(f"Welcome {user}!")
+                    mmp.mainMenuPatient()
+                else:
+                    print(f"Invalid Log In Credentials for {user} . Try Again")
+                    continue 
             case 2:
                 print("Please Fill Out the Following Infomation: \n")
 
@@ -53,6 +53,7 @@ def main():
                 except:
                     uid = 1
 
+                user_cur.close()
                 user_table_connect.close()
 
                 # Tries to add User to users.db
