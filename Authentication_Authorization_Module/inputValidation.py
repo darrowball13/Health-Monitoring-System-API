@@ -48,5 +48,146 @@ def sanitizeEmail(email):
     else:
         return email
     
-def randomTest():
-    assert sanitizeEmail("fakeemail.com") == "Invalid"
+
+########################################################################################
+######################### Unit Tests Defined Below #####################################
+########################################################################################
+
+
+######## Checking sanitizeText Function ########
+
+# Contains a string of alphabet characters (upper and lowercase) only
+def test_sanitizeText_alphabet_only():
+    assert sanitizeText("HealthCare") == "HealthCare"
+
+# Contains a string with numeric characters only
+def test_sanitizeText_numbers_only():
+    assert sanitizeText("8675309") == "8675309"
+
+# Contains a string with alphabetic and numeric characters
+def test_sanitizeText_mixed():
+    assert sanitizeText("rdude10101") == "rdude10101"
+
+# Contains a space, an unallowed character
+def test_sanitizeText_with_spaces():
+    assert sanitizeText("Very Cool") == "Invalid"
+
+# No input/empty string
+def test_sanitizeText_empty():
+    assert sanitizeText("") == "Invalid"
+
+# Contains special characters, which are not allowed
+def test_sanitizeText_with_special_chars():
+    assert sanitizeText("D@RR+#") == "Invalid"
+
+
+######### Checking santitizeOptions Function ##########
+
+# Contains regular number input between 0-9
+def test_sanitizeOptions_valid_number():
+    assert sanitizeOptions("3") == 3
+
+# Contains a string of alphabetic characters (not allowed)
+def test_sanitizeOptions_text_string():
+    assert sanitizeOptions("two") == "Invalid"
+
+# No input/empty string
+def test_sanitizeOptions_empty():
+    assert sanitizeOptions("") == "Invalid"
+
+# Contains a negative number
+def test_sanitizeOptions_negative_number():
+    assert sanitizeOptions("-1") == "Invalid"
+
+# Contains special characters
+def test_sanitizeOptions_negative_number():
+    assert sanitizeOptions("[2]") == "Invalid"
+
+# Contains a number outside of the options 0-9
+def test_sanitizeOptions_too_large():
+    assert sanitizeOptions("20") == "Invalid"
+
+
+######## Checking sanitizeNames Function ########
+
+# Contains a string of alphabet characters (upper and lowercase) only
+def test_sanitizeNames_alphabet_only():
+    assert sanitizeNames("Omar") == "Omar"
+
+# Contains a string with numeric characters only
+def test_sanitizeNames_numbers_only():
+    assert sanitizeNames("98765") == "Invalid"
+
+# Contains a string with alphabetic and numeric characters
+def test_sanitizeNames_mixed():
+    assert sanitizeNames("Jeff2024") == "Invalid"
+
+# Contains a space, an unallowed character
+def test_sanitizeNames_with_spaces():
+    assert sanitizeNames("Professor Darrow") == "Invalid"
+
+# No input/empty string
+def test_sanitizeNames_empty():
+    assert sanitizeNames("") == "Invalid"
+
+# Contains special characters, which are not allowed
+def test_sanitizeNames_with_special_chars():
+    assert sanitizeNames("C@$hM[0]ney") == "Invalid"
+
+
+######### Checking santitizeSSN Function ##########
+
+# Contains a number of valid SSN length and numeric values only
+def test_sanitizeSSN_valid_SSN():
+    assert sanitizeSSN("900800700") == 900800700
+
+# Contains a string of alphabetic characters (not allowed)
+def test_sanitizeSSN_text_string():
+    assert sanitizeSSN("eigthy") == "Invalid"
+
+# Contains a string with alphabetic and numeric characters (not allowed)
+def test_sanitizeSSN_mixed():
+    assert sanitizeSSN("myssnis1234") == "Invalid"
+
+# No input/empty string
+def test_sanitizeSSN_empty():
+    assert sanitizeSSN("") == "Invalid"
+
+# Contains a negative number of valid SSN length
+def test_sanitizeSSN_negative_number():
+    assert sanitizeSSN("-100200300") == "Invalid"
+
+# Contains special characters
+def test_sanitizeSSN_special_characters():
+    assert sanitizeSSN("***-**-****") == "Invalid"
+
+# Contains a number shorter than valid SSN
+def test_sanitizeSSN_short():
+    assert sanitizeSSN("654738") == "Invalid"
+
+# Contains a number longer than valid SSN
+def test_sanitizeSSN_short():
+    assert sanitizeSSN("10000000000000000") == "Invalid"
+
+
+######### Checking santitizeEmail Function ##########
+
+# Contains a valid email address
+def test_sanitizeEmail_valid_email():
+    assert sanitizeEmail("darrowry@bu.edu") == "darrowry@bu.edu"
+
+# Missing an @ symbol for the email
+def test_sanitizeEmail_no_at_symbol():
+    assert sanitizeEmail("darrow.ryan.s.gmail.com") == "Invalid"
+
+# Missing a proper domain
+def test_sanitizeEmail_missing_domain():
+    assert sanitizeEmail("tom_brady_12@") == "Invalid"
+
+# Contains unallowed special characters
+def test_sanitizeEmail_invalid_characters():
+    assert sanitizeEmail("thebest!email@yahoo.com") == "Invalid"
+
+# No input/empty string
+def test_sanitizeEmail_empty():
+    assert sanitizeEmail("") == "Invalid"

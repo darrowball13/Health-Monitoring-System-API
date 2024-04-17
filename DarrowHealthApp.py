@@ -1,6 +1,7 @@
 import signInMenu as sim
 import User_Management_Module.registrationForm as reg
 import User_Management_Module.mainMenuPatient as mmp
+import User_Management_Module.mainMenuMedical as mmm
 import Authentication_Authorization_Module.logInForm as li
 from requests import post, get, delete
 import sqlite3
@@ -23,7 +24,6 @@ def main():
         # to determine the next action(s)
         signIn = sim.signIn()
 
-    
         # Note: need to confirm the options here map to the proper options in the sign in menu
         match signIn:
             case 1:
@@ -32,7 +32,8 @@ def main():
                 logInCheck, user = li.login()
                 if logInCheck:
                     print(f"Welcome {user}!")
-                    mmp.mainMenuPatient()
+                    # mmp.mainMenuPatient()
+                    mmm.mainMenuMedical()
                 else:
                     print(f"Invalid Log In Credentials for {user} . Try Again")
                     continue 

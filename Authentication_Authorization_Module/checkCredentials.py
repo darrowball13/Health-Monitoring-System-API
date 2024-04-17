@@ -9,8 +9,7 @@ url = "http://localhost:8000/user/"
 # The double os.path.dirname used to jump to parent directory (Health-Monitoring-System-API)
 dir_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "User_Management_Module", "users.db")
 
-print(dir_path)
-
+# Checks to confirm that the username isn't currently taken, based on users in the users.db database
 def checkUsernameExists(username):
 
     # Query SQL database to determine User ID number (primary key) based on username
@@ -27,6 +26,7 @@ def checkUsernameExists(username):
     else:
         return False
     
+# Checks to see if an email has already been used by a user
 def checkEmailExists(email):
 
     # Query SQL database to determine User ID number (primary key) based on username
@@ -42,7 +42,8 @@ def checkEmailExists(email):
         return True
     else:
         return False
-    
+
+# Checks to see if a SSN has been placed in the users.db table already 
 def checkSSNExists(ssn):
 
     # Query SQL database to determine User ID number (primary key) based on username
