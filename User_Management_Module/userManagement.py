@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS users (
     ssn INT NOT NULL, 
     email TEXT NOT NULL,                         
     username TEXT NOT NULL,
-    password TEXT NOT NULL)''')
+    password TEXT NOT NULL,
+    role INT NOT NULL)''')
 
 user_table_connect.commit()
 
@@ -44,9 +45,10 @@ class users(db.Model):
     email = db.Column(db.String(200), nullable = False)
     username = db.Column(db.String(200), nullable = False)
     password = db.Column(db.String(200), nullable = False)
+    role = db.Column(db.Integer, nullable = False)
     
 
-    def __init__(self, id, first_name, last_name, ssn, email, username, password):
+    def __init__(self, id, first_name, last_name, ssn, email, username, password, role):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
@@ -54,6 +56,7 @@ class users(db.Model):
         self.email = email
         self.username = username
         self.password = password
+        self.role = role
         
 
     # Shows what values are returned when this object is queried
@@ -69,11 +72,12 @@ user_definition = {
     'ssn' : fields.Integer,
     'email' : fields.String,
     'username' : fields.String,
-    'password' : fields.String
+    'password' : fields.String,
+    'role' : fields.Integer
 }
 
 class FormatUser(object):
-    def __init__(self, uid, first_name, last_name, ssn, email, username, password):
+    def __init__(self, uid, first_name, last_name, ssn, email, username, password, role):
         self.user_id = uid
         self.first_name = first_name
         self.last_name = last_name
@@ -81,6 +85,7 @@ class FormatUser(object):
         self.email = email
         self.username = username
         self.password = password
+        self.role = role
         
 
 
@@ -92,6 +97,7 @@ parser.add_argument('ssn', required=True, help="ssn cannot be blank")
 parser.add_argument('email', required=True, help="ssn cannot be blank")
 parser.add_argument('username', required=True, help="username cannot be blank")
 parser.add_argument('password', required=True, help="username cannot be blank")
+parser.add_argument('role', required=True, help="username cannot be blank")
 
 
 def get_user(user_id):
@@ -100,7 +106,7 @@ def get_user(user_id):
 
     try:
         if (user):
-            return FormatUser(user.id, user.first_name, user.last_name, user.ssn, user.email, user.username, user.password)
+            return FormatUser(user.id, user.first_name, user.last_name, user.ssn, user.email, user.username, user.password, user.role)
         # Otherwise, send error message and error code
         else:
             return {'error' : 'no such user found'}, 404
@@ -132,19 +138,14 @@ class UserAPI(Resource):
         else:
         # Start SQLite db session to insert and commit
             new_user = users(user_id, args['first_name'], args['last_name'], args['ssn'], 
-                             args['email'], args['username'], args['password'])
+                             args['email'], args['username'], args['password'], args['role'])
             db.session.add(new_user)
             db.session.commit()
 
         return FormatUser(user_id, args['first_name'], args['last_name'], args['ssn'], 
-                             args['email'], args['username'], args['password'])
+                             args['email'], args['username'], args['password'], args['role'])
 
         
-    # def patch(self, user_id):
-    #     check = users.query.filter_by(id=user_id).first()
-    #     if not check:
-    #         abort(404, message="User ID doesn't exist")
-
     # DELETE function for deleting resources from the API
     def delete(self, user_id):
 
@@ -163,5 +164,9 @@ class UserAPI(Resource):
 # /<datatype: input_name> = a way to have variable paths
 api.add_resource(UserAPI, '/user/<int:user_id>')
 
+# api.add_resource(UserAPI, '/user/<int:user_id>', '/user_role/<int:user_id>/<int:entry_id>')
+
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
+
+

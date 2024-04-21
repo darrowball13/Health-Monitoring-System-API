@@ -2,6 +2,7 @@ import signInMenu as sim
 import User_Management_Module.registrationForm as reg
 import User_Management_Module.mainMenuPatient as mmp
 import User_Management_Module.mainMenuMedical as mmm
+import User_Management_Module.mainMenuAdmin as mma
 import Authentication_Authorization_Module.logInForm as li
 from requests import post, get, delete
 import sqlite3
@@ -29,11 +30,20 @@ def main():
             case 1:
                 print("Log In Accessed")
 
-                logInCheck, user = li.login()
+                logInCheck, user, user_role = li.login()
                 if logInCheck:
                     print(f"Welcome {user}!")
-                    # mmp.mainMenuPatient()
-                    mmm.mainMenuMedical()
+
+                    if user_role == 1:
+                        mma.mainMenuAdmin()
+                    elif user_role == 2 or user_role == 3:
+                        mmm.mainMenuMedical()
+                    elif user_role == 4:
+                        mmp.mainMenuPatient()
+                    else:
+                        print("Invalide User Role. Please reach out to an Admin to fix.")
+                        continue
+                        
                 else:
                     print(f"Invalid Log In Credentials for {user} . Try Again")
                     continue 
@@ -60,7 +70,7 @@ def main():
                 # Tries to add User to users.db
                 try:
                     print(post(url+str(uid), json={"first_name" : firstname, "last_name" : lastname, "ssn" : ssn, 
-                                               "email" : email, "username" : username, "password" : password}))
+                                               "email" : email, "username" : username, "password" : password, "role" : role}))
                 except Exception as e:
                     print(f"ERROR: Failed to create user:", e)
 

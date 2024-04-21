@@ -37,6 +37,9 @@ def register():
         if ssn == "Invalid":
             print("Enter a valid SSN")
             continue
+        elif check.checkSSNExists(ssn):
+            print("SSN registered to another user. Please try again")
+            continue
         else: 
             break
     
@@ -48,7 +51,7 @@ def register():
             print("Enter a valid username")
             continue
         elif check.checkUsernameExists(username):
-            print("Username exists. Select a different one.")
+            print("Username exists. Please select a different one.")
             continue
         else: 
             break

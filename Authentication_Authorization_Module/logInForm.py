@@ -50,7 +50,7 @@ def login():
 
     result = get(url+str(uid)).json()
     if result["password"] == password:
-        return True, username
+        return True, username, result["role"]
     else:
-        return False, username
+        return False, username, result["role"]
 

@@ -32,7 +32,7 @@ def mainMenuMedical():
                     apt.appointManage()
                     continue
                 case 3: 
-                    print("Appiontment Manager Accessed \n")
+                    print("Device Manager Accessed \n")
                     continue
                 case 4:
                     print("Logging Out \n")
