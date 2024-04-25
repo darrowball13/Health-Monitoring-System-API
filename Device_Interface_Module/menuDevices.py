@@ -16,7 +16,7 @@ def mainMenuDevices_Data():
         print("[2]: Register a Device")
         print("[3]: Remove a Device")
         print("[4]: Back to Main Menu \n")
-        print("************************************ \n")
+        print("************************************ \n") 
 
         command = input("Enter a Command Based on the Numbers above: ")
         san_command = iv.sanitizeOptions(command)
@@ -32,6 +32,7 @@ def mainMenuDevices_Data():
                     continue
                 case 2: 
                     print("Please enter the device information below: \n")
+                    
                     continue
                 case 3: 
                     print("Enter Device ID/Name: \n")

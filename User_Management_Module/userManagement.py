@@ -27,6 +27,12 @@ CREATE TABLE IF NOT EXISTS users (
     password TEXT NOT NULL,
     role INT NOT NULL)''')
 
+user_cur.execute('''
+CREATE TABLE IF NOT EXISTS devices (
+    id INT PRIMARY KEY,
+    device_name TEXT NOT NULL,
+    device_type TEXT NOT NULL)''')
+
 user_table_connect.commit()
 
 user_table_connect.close()
@@ -163,8 +169,6 @@ class UserAPI(Resource):
     
 # /<datatype: input_name> = a way to have variable paths
 api.add_resource(UserAPI, '/user/<int:user_id>')
-
-# api.add_resource(UserAPI, '/user/<int:user_id>', '/user_role/<int:user_id>/<int:entry_id>')
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)

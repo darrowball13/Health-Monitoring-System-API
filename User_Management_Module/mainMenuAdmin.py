@@ -1,8 +1,19 @@
 import Authentication_Authorization_Module.inputValidation as iv
 import Device_Interface_Module.menuDevices as dm
 
+import sqlite3
+import os
+
+# url that's hosting the User API
+url = "http://localhost:8000/user/"
+
+# The directory to the path that the users database will be stored
+dir_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "User_Management_Module", "users.db")
+
 # Stores the available medical professional menu option numbers. Must be updated if any options are added/removed
 admin_Options = [1,2,3,4]
+
+# Stores the available device menu option numbers. Must be updated if any options are added/removed
 devices_menu = [1,2,3]
 
 # Brings up the medical professional menu, and returns the command the user gave (after input sanitation)
@@ -27,12 +38,23 @@ def mainMenuAdmin():
             match san_command:
                 case 1: 
                     print("Patient List Accessed \n")
+
+                    user_table_connect = sqlite3.connect(dir_path)
+                    user_cur = user_table_connect.cursor()
+                    user_cur.execute("SELECT * from users where role = 4")
+                    results = user_cur.fetchall()
+
+                    print("User ID | First Name | Last Name ")
+                    for i in results:
+                        print(i[0], "       ", i[1], "       ", i[2], " \n")
+
+
                     continue
                 case 2: 
 
                     print("************ Device Menus ************ \n")
-                    print("[1]: Device Data Menu")
-                    print("[2]: Users-Devices Menu")
+                    print("[1]: Device Menu")
+                    print("[2]: Users Devices Menu")
                     print("[3]: Go Back \n")
                     print("************************************** \n")
 
