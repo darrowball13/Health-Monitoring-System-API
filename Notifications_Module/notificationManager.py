@@ -21,13 +21,13 @@ def notify_Users_access():
 
         match user_role:
             case 1:
-                print("Can Read/Write Data, Add/Remove Patients and Devices, Edit Database Structure, Edit Code")
+                print("Role: Admin - Can Read/Write Data, Add/Remove Patients and Devices, Edit Database Structure, Edit Code")
             case 2:
-                print("Can Read/Write Data, Add/Remove Patients and Devices")
+                print(f"Role: Doctor - Can Read/Write Data, Add/Remove Patients and Devices")
             case 3:
-                print("Can Read/Write Data, Add/Remove Patients and Devices (Limited Basis)")
+                print(f"Role: Nurse - Can Read/Write Data, Add/Remove Patients and Devices (Limited Basis)")
             case 4:
-                print("Can Read/Write Data for Yourself Only")
+                print(f"Role: Patient - Can Read/Write Data for Yourself Only")
 
         q.task_done()
 
