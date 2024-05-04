@@ -1,6 +1,5 @@
 import threading
 import queue
-import numpy as num
 import sqlite3
 import os
 
@@ -9,7 +8,7 @@ url = "http://localhost:8000/user/"
 
 # The directory to the path that the users database will be stored
 # The double os.path.dirname used to jump to parent directory (Health-Monitoring-System-API)
-dir_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "User_Management_Module", "users.db")
+dir_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "User_Management_Module", "healthcare.db")
 
 # Reference: https://docs.python.org/3/library/queue.html
 

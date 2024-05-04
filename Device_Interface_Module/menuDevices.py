@@ -1,4 +1,5 @@
 import Authentication_Authorization_Module.inputValidation as iv
+from Device_Interface_Module import deviceManagement as device
 
 # Stores the available device-user relationship menu option numbers. Must be updated if any options are added/removed
 device_menu_users = [1,2,3,4]
@@ -12,13 +13,18 @@ def mainMenuDevices_Data():
     while True:
 
         print("****** Device Management Menu ****** \n")
-        print("[1]: Find a Device")
+        print("[1]: List Devices")
         print("[2]: Register a Device")
         print("[3]: Remove a Device")
         print("[4]: Back to Main Menu \n")
         print("************************************ \n") 
 
         command = input("Enter a Command Based on the Numbers above: ")
+
+        if command.strip() == "":  # Check for empty input
+            print("Command cannot be empty. Try again")
+            continue
+
         san_command = iv.sanitizeOptions(command)
         if san_command == "Invalid":
             continue
@@ -28,14 +34,15 @@ def mainMenuDevices_Data():
         else: 
             match san_command:
                 case 1: 
-                    print("Enter Device ID/Name: \n")
+                    print("Device Information Below: \n")
+                    device.listDevices()
                     continue
                 case 2: 
                     print("Please enter the device information below: \n")
-                    
+                    device.addDevice()
                     continue
                 case 3: 
-                    print("Enter Device ID/Name: \n")
+                    device.deleteDevice()
                     continue
                 case 4:
                     print("Returning to Main Menu... \n")
@@ -54,6 +61,11 @@ def mainMenuDevices_User():
         print("****************************************** \n")
 
         command = input("Enter a Command Based on the Numbers above: ")
+
+        if command.strip() == "":  # Check for empty input
+            print("Command cannot be empty. Try again")
+            continue
+
         san_command = iv.sanitizeOptions(command)
         if san_command == "Invalid":
             continue

@@ -12,7 +12,7 @@ import os
 url = "http://localhost:8000/user/"
 
 # The directory to the path that the users database will be stored
-dir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "User_Management_Module", "users.db")
+dir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "User_Management_Module", "healthcare.db")
 
 def main():
 

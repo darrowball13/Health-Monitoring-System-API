@@ -13,6 +13,11 @@ def register():
     # First name 
     while True:
         first_name = input("First Name: ")
+
+        if first_name.strip() == "":  # Check for empty input
+            print("First name cannot be empty. Try again")
+            continue
+
         first_name = iv.sanitizeNames(first_name)
         if first_name == "Invalid":
             print("Enter a valid first name")
@@ -23,6 +28,11 @@ def register():
     # Last name
     while True:
         last_name = input("Last Name: ")
+
+        if last_name.strip() == "":  # Check for empty input
+            print("Last name cannot be empty. Try again")
+            continue
+
         last_name = iv.sanitizeNames(last_name)
         if last_name == "Invalid":
             print("Enter a valid last name")
@@ -33,6 +43,11 @@ def register():
     # Social Security Number
     while True:
         ssn = input("Social Security Number (enter with no -): ")
+
+        if ssn.strip() == "":  # Check for empty input
+            print("SSN cannot be empty. Try again")
+            continue
+
         ssn = iv.sanitizeSSN(ssn)
         if ssn == "Invalid":
             print("Enter a valid SSN")
@@ -46,6 +61,11 @@ def register():
     # Username
     while True:
         username = input("Username: ")
+
+        if username.strip() == "":  # Check for empty input
+            print("Username cannot be empty. Try again")
+            continue
+
         username = iv.sanitizeText(username)
         if username == "Invalid":
             print("Enter a valid username")
@@ -59,6 +79,11 @@ def register():
     # Password
     while True:
         password = input("Password: ")
+
+        if password.strip() == "":  # Check for empty input
+            print("Password cannot be empty. Try again")
+            continue
+
         password = iv.sanitizeText(password)
         if password == "Invalid":
             print("Enter a valid password")
@@ -69,6 +94,11 @@ def register():
     # Email
     while True:
         email = input("Email: ")
+
+        if email.strip() == "":  # Check for empty input
+            print("Email cannot be empty. Try again")
+            continue
+
         email = iv.sanitizeEmail(email)
         if email == "Invalid":
             print("Enter a valid email")
@@ -89,7 +119,12 @@ def register():
     print("[4]: Patient \n")
 
     while True:
-        primary_role = input("What is your primary role? (More may be added after registration): ")
+        primary_role = input("What is your primary role?: ")
+
+        if primary_role.strip() == "":  # Check for empty input
+            print("Role cannot be empty. Try again")
+            continue
+
         san_role = iv.sanitizeOptions(primary_role)
         if san_role == "Invalid":
             continue

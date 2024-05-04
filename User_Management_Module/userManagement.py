@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api, fields, marshal_with, reqparse, abort
 from flask_sqlalchemy import SQLAlchemy
+import databaseManagement as dm
 import sqlite3
 import os
 
@@ -11,34 +12,12 @@ import os
 app = Flask(__name__)
 api = Api(app)
 
-# Create database.db table if it doesn't already exist. Source: https://docs.python.org/3/library/sqlite3.html
-user_table_connect = sqlite3.connect("users.db")
-
-user_cur = user_table_connect.cursor()
-
-user_cur.execute('''
-CREATE TABLE IF NOT EXISTS users (
-    id INT PRIMARY KEY,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
-    ssn INT NOT NULL, 
-    email TEXT NOT NULL,                         
-    username TEXT NOT NULL,
-    password TEXT NOT NULL,
-    role INT NOT NULL)''')
-
-user_cur.execute('''
-CREATE TABLE IF NOT EXISTS devices (
-    id INT PRIMARY KEY,
-    device_name TEXT NOT NULL,
-    device_type TEXT NOT NULL)''')
-
-user_table_connect.commit()
-
-user_table_connect.close()
+# Create database and tables if it doesn't already exist. Functionality for this moved to databaseManagement.py for slightly cleaner
+# RESTFUL API file
+dm.create_Database()
 
 # Configures the userManagement API to connect to the database 'database.db' SQLite file (since SQLite db is locally stored)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(os.path.abspath(os.path.dirname(__file__)), 'users.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(os.path.abspath(os.path.dirname(__file__)), 'healthcare.db')
 db = SQLAlchemy(app)
 
 

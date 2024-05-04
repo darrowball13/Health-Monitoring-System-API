@@ -14,6 +14,11 @@ def signIn():
  
     while True:
         command = input("Enter a Command Based on the Numbers above: ")
+
+        if command.strip() == "":  # Check for empty input
+            print("Command cannot be empty. Try again")
+            continue
+
         san_command = iv.sanitizeOptions(command)
         if san_command == "Invalid":
             continue

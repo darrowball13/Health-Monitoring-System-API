@@ -8,7 +8,7 @@ import os
 url = "http://localhost:8000/user/"
 
 # The directory to the path that the users database will be stored
-dir_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "User_Management_Module", "users.db")
+dir_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "User_Management_Module", "healthcare.db")
 
 # Stores the available medical professional menu option numbers. Must be updated if any options are added/removed
 admin_Options = [1,2,3,4]
@@ -28,26 +28,32 @@ def mainMenuAdmin():
         print("************************************* \n")
 
         command = input("Enter a Command Based on the Numbers above: ")
+
+        if command.strip() == "":  # Check for empty input
+            print("Command cannot be empty. Try again")
+            continue
+
         san_command = iv.sanitizeOptions(command)
+
         if san_command == "Invalid":
             continue
+        
         elif san_command not in admin_Options:
             print("Enter a Valid Command \n")
             continue
         else: 
             match san_command:
                 case 1: 
-                    print("Patient List Accessed \n")
+                    print("User List Accessed \n")
 
                     user_table_connect = sqlite3.connect(dir_path)
                     user_cur = user_table_connect.cursor()
-                    user_cur.execute("SELECT * from users where role = 4")
+                    user_cur.execute("SELECT * from users")
                     results = user_cur.fetchall()
 
-                    print("User ID | First Name | Last Name ")
+                    print("User ID | First Name | Last Name | Email      | Username")
                     for i in results:
-                        print(i[0], "       ", i[1], "       ", i[2], " \n")
-
+                        print(i[0], "       ", i[1], "       ", i[2], "       ", i[4], "       ", i[5], " \n")
 
                     continue
                 case 2: 
@@ -59,6 +65,11 @@ def mainMenuAdmin():
                     print("************************************** \n")
 
                     device_menu_selection = input("Which menu Would you like to access?: ")
+
+                    if device_menu_selection.strip() == "":  # Check for empty input
+                        print("Command cannot be empty. Try again")
+                        continue
+
                     san_command = iv.sanitizeOptions(device_menu_selection)
                     if san_command == "Invalid":
                         continue

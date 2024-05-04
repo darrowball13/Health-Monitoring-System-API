@@ -8,7 +8,7 @@ import os
 url = "http://localhost:8000/user/"
 
 # The directory to the path that the users database will be stored
-dir_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "User_Management_Module", "users.db")
+dir_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "User_Management_Module", "healthcare.db")
 
 # print(dir_path)
 
@@ -19,6 +19,11 @@ def login():
     # Username
     while True:
         username = input("Username: ")
+
+        if username.strip() == "":  # Check for empty input
+            print("Command cannot be empty. Try again")
+            continue
+
         username = iv.sanitizeText(username)
         if username == "Invalid":
             print("Enter a valid username")
@@ -32,6 +37,11 @@ def login():
     # Password
     while True:
         password = input("Password: ")
+
+        if password.strip() == "":  # Check for empty input
+            print("Command cannot be empty. Try again")
+            continue
+
         password = iv.sanitizeText(password)
         if password == "Invalid":
             print("Enter a valid password")
