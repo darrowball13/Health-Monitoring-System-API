@@ -29,4 +29,4 @@ This opens the main application, which prompts the user for the following:
   <img src = "https://github.com/darrowball13/Health-Monitoring-System-API/assets/113733798/66f4ff6c-29e8-4fd3-9939-91b5ff5321db" />
 </p>
 
-Commands must then be entered into the terminal based on available commands from the given menu. A demonstration video can be found in this repository.
+Commands must then be entered into the terminal based on available commands from the given menu. A demonstration video "demonstration_v2.mp4" can be found in this repository highlighting the navigation through the major aspects of the app.
