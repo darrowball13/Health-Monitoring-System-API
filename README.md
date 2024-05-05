@@ -1,8 +1,12 @@
 # Health-Monitoring-System-API
 
-This repository holds the code for a simple healthcare app developed for the course EC530 Software Engineering Foundations. It is a Python-based application, and therefore requieres the user to have Python installed (version 3.9 or later).
+This repository holds the code for a simple healthcare app developed for the course EC530 Software Engineering Foundations. It is a Python-based application, and was created with Python 3.12.2 installed
 
-**Note: The structure of the repository is currently undergoing some adjustments, as there are adjustments needed to the files needed/folders.**
+## Requirements
+
+In the main directory, there is a text file "requirements.txt" that contains all of the requirements needed for this app. In order to install these requirements, open a terminal from the main directory and run the following command:
+
+> pip install -r requirements.txt
 
 ## Usage
 
