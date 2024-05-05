@@ -3,7 +3,6 @@ from datetime import datetime
 
 import sqlite3
 import os
-# import Authentication_Authorization_Module.inputValidation as iv
 
 # The directory to the path that the users database will be stored
 # The double os.path.dirname used to jump to parent directory (Health-Monitoring-System-API)
@@ -90,6 +89,36 @@ def createAppt():
 
     return
 
+def cancelAppt():
+    appt_table_connect = sqlite3.connect(dir_path)
+    appt_curr = appt_table_connect.cursor()
+
+    try:
+        while True:
+            
+            delete_id = input("Enter the ID of the appointment to cancel: ")
+                
+            if delete_id.strip() == "":  # Check for empty input
+                print("Appointment ID cannot be empty. Try again")
+                continue
+            else:
+                break
+
+        # Delete device with the specified ID
+        command = "DELETE FROM appointments WHERE id = ?"
+        appt_curr.execute(command, (int(delete_id),))
+
+        appt_table_connect.commit()
+        print(f"Appoitnment cancelled successfully.\n")
+
+    except sqlite3.Error as err:
+        print(f"Error: {err}")  # Print specific error message
+    finally:
+        # Close connection regardless of exceptions
+        appt_curr.close()
+        appt_table_connect.close()
+
+# Lists the appointments based on a given Doctor ID (meant to be used by Doctor/Nurse)
 def listAppts():
 
     appt_table_connect = sqlite3.connect(dir_path)
@@ -144,14 +173,14 @@ def schedulingAppt():
                     print("Please select the Appointment you would like to change: \n")
                     continue
                 case 3: 
-                    print("Please select the Appointment you would like to cancel: \n")
+                    cancelAppt()
                     continue
                 case 4:
                     print("Returning... \n")
                     break
 
 
-# Brings up the patient menu, and returns the command the user gave (after input sanitation)
+# The appointment menu for Doctors to view upcoming appointments or schedule appointments
 def appointManage():
 
     while True:

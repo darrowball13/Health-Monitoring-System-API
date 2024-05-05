@@ -1,4 +1,6 @@
 import Authentication_Authorization_Module.inputValidation as iv
+import Data_Reading_Module.healthDataMenu as hdata
+import Notifications_Module.appointmentManager as appt
 
 # Stores the available patient menu option numbers. Must be updated if any options are added/removed
 patient_Options = [1,2,3,4]
@@ -10,7 +12,7 @@ def mainMenuPatient():
 
         print("****** How Can We Help Today? ****** \n")
         print("[1]: My Medical Infomation")
-        print("[2]: Billing Information")
+        print("[2]: Billing Information (Currently N/A)")
         print("[3]: Appointment Management")
         print("[4]: Log Out \n")
         print("************************************ \n")
@@ -30,13 +32,13 @@ def mainMenuPatient():
         else: 
             match san_command:
                 case 1: 
-                    print("Medical Information Accessed \n")
+                    hdata.mainMenuHealthData()
                     continue
                 case 2: 
                     print("Billing Information Accessed \n")
                     continue
                 case 3: 
-                    print("Appiontment Manager Accessed \n")
+                    appt.appointManage()
                     continue
                 case 4:
                     print("Logging Out \n")

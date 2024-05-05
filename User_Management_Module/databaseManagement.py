@@ -35,6 +35,14 @@ def create_Database():
         appointment_date TEXT NOT NULL,
         appointment_time TEXT NOT NULL,
         time_entered TEXT NOT NULL)''')
+    
+    db_cur.execute('''
+    CREATE TABLE IF NOT EXISTS healthData (
+        id INT PRIMARY KEY,
+        patient_id INT NOT NULL,
+        device_id INT NOT NULL,
+        value TEXT NOT NULL,
+        time_entered TEXT NOT NULL)''')
 
     db_connect.commit()
 
