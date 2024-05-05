@@ -10,7 +10,7 @@ In the main directory, there is a text file "requirements.txt" that contains all
 
 ## Usage
 
-Before starting the main app, there is a RESTFUL API that needs to be started from within the User_Management_Module folder: "userManagement.py". This API contains GET, POST, and DELETE requests for the table _users_ from within the database "users.db". Additionally, if the table or database does not exist, starting the Python file above will create these as well. Therefore, begin by open a terminal from the User_Management_Module folder and run the following command:
+Before starting the main app, there is a RESTFUL API that needs to be started from within the User_Management_Module folder: "userManagement.py". This API contains GET, POST, and DELETE requests for the table _users_ from within the database "healthcare.db". Additionally, if the table or database does not exist, starting the Python file above will create these as well. Therefore, begin by open a terminal from the User_Management_Module folder and run the following command:
 
 > python userManagement.py
 
@@ -29,4 +29,4 @@ This opens the main application, which prompts the user for the following:
   <img src = "https://github.com/darrowball13/Health-Monitoring-System-API/assets/113733798/66f4ff6c-29e8-4fd3-9939-91b5ff5321db" />
 </p>
 
-Commands must then be entered into the terminal based on available commands from the given menu. The database given in this respository should have some records for a variety of different user types, but a new user profile may be created by selecting the **Register** option.
+Commands must then be entered into the terminal based on available commands from the given menu. A demonstration video can be found in this repository.
